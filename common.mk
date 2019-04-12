@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
 # Get non-open-source specific aspects
@@ -33,6 +32,7 @@ AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
     boot \
+    dtbo \
     system \
     vbmeta
 
@@ -70,9 +70,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libvulkan
 
+# Doze
+PRODUCT_PACKAGES += \
+    OnePlusDoze
+
 # HotwordEnrollement app permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:system/etc/permissions/privapp-permissions-hotword.xml
+
+# IMS
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0
 
 # Input
 PRODUCT_COPY_FILES += \
@@ -98,6 +106,10 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     com.android.nfc_extras
+
+# Pocket mode
+PRODUCT_PACKAGES += \
+    OnePlusPocketMode
 
 # Power
 PRODUCT_PACKAGES += \
